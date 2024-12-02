@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <p id="role-message"></p>
+    <p id="role-actions"></p>
+
+    <script>
+        async function getDashboard() {
+            const token = localStorage.getItem("token");
+
+            const response = await fetch('/dashboard', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const data = await response.json();
+            document.getElementById("role-message").textContent = "Your role: " + data.role;
+
+            // Display role-specific actions
+            if (data.role === "Admin") {
+                document.getElementById("role-actions").textContent = "Admin Panel: Manage users.";
+            } else if (data.role === "Moderator") {
+                document.getElementById("role-actions").textContent = "Moderator Panel: Moderate content.";
+            } else {
+                document.getElementById("role-actions").textContent = "User Panel: View content.";
+            }
+        }
+
+        getDashboard();
+    </script>
+</body>
+</html>
