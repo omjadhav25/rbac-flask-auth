@@ -1,0 +1,105 @@
+Role-Based Authentication System
+
+A simple role-based authentication system built with Flask. This project allows users to register, log in, and access a dashboard based on their assigned roles (User, Moderator, Admin). Admins can also assign roles to other users.
+Features
+
+    User Registration: Users can register with a role (User, Moderator, Admin).
+    Login: Users can log in to obtain a JWT token for authentication.
+    Role-Based Dashboard: Displays the user’s role and shows specific actions based on the role.
+    Admin Role Management: Admins can assign and update roles for other users.
+
+Technologies Used
+
+    Flask: Web framework for Python.
+    Flask-JWT-Extended: JWT authentication for securing routes.
+    Flask-Bcrypt: Password hashing for secure authentication.
+    Flask-SQLAlchemy: ORM for database management with SQLite.
+    HTML, JavaScript (Fetch API): Frontend for user registration, login, and dashboard interaction.
+
+Installation
+
+Follow these steps to run the project locally.
+Prerequisites
+
+    Python 3.x
+    Virtual Environment (Recommended)
+
+Steps
+
+    Clone the repository:
+
+git clone https://github.com/your-username/rbac-flask-auth.git
+cd rbac-flask-auth
+
+Set up a virtual environment (optional but recommended):
+
+python3 -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+Install the required dependencies:
+
+pip install -r requirements.txt
+
+Create the database: The database will be automatically created when you run the app the first time.
+
+Run the Flask app:
+
+    python app.py
+
+    The application will run on http://127.0.0.1:5001.
+
+    Open in browser:
+        Visit http://127.0.0.1:5001 to access the registration and login page.
+
+Usage
+
+    Register a User:
+        Go to the registration form, enter the username, password, and select a role (User, Moderator, Admin).
+        After registration, users can log in.
+
+    Login:
+        Use the login form to enter your credentials (username and password).
+        Upon successful login, you will receive a JWT token and be redirected to the dashboard.
+
+    Accessing the Dashboard:
+        After logging in, the dashboard will show your assigned role and any relevant actions depending on whether you are a User, Moderator, or Admin.
+
+    Role Management (Admin Only):
+        Admins can assign or change the role of any user through the /admin/assign_role endpoint.
+
+API Endpoints
+
+    POST /register: Register a new user with a username, password, and role.
+    POST /login: Login with username and password to get a JWT token.
+    GET /dashboard: Protected route for the dashboard, requires a valid JWT token.
+    POST /admin/assign_role: Admin-only route to assign roles to users.
+
+File Structure
+
+rbac-flask-auth/
+│
+├── app.py                # Main Flask app and routes
+├── requirements.txt      # Project dependencies
+├── templates/
+│   ├── index.html        # Registration and Login page
+│   └── dashboard.html    # Dashboard page for logged-in users
+└── README.md             # This file
+
+Requirements
+
+    Flask: Web framework for building the application.
+    Flask-JWT-Extended: For handling JWT-based authentication.
+    Flask-Bcrypt: For securely hashing passwords.
+    Flask-SQLAlchemy: For database handling (SQLite).
+    SQLite: Default database used to store user information.
+
+Future Improvements
+
+    Add user email verification during registration.
+    Implement password reset functionality.
+    Use a more secure database in production (e.g., PostgreSQL or MySQL).
+    Implement better error handling and validation.
+
+License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
